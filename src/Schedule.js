@@ -156,7 +156,7 @@ function useForceUpdate() {
     return () => setValue(value => value + 1);
 }
 
-function isBlank(str){
+function isBlank(str) {
     return (!!!str || /^\s*$/.test(str));
 }
 
@@ -171,7 +171,7 @@ function DisplayClasses() {
                         <Grid container alignItems='center' justifyContent='center' spacing={2} direction="column">
                             <Grid item>
                                 <Typography gutterBottom variant="subtitle1">
-                                    <b>{item[0]}&nbsp; {isBlank(item[5]) ? null : ("("+item[5]+")")}</b>
+                                    <b>{item[0]}&nbsp; {isBlank(item[5]) ? null : ("(" + item[5] + ")")}</b>
                                 </Typography>
                             </Grid>
                             <Grid item xs={4} className={classes.round}>
@@ -198,7 +198,7 @@ function DisplayClasses() {
                         <Grid container alignItems='center' justifyContent='center' spacing={2} direction="column">
                             <Grid item>
                                 <Typography gutterBottom variant="subtitle1">
-                                <b>{item[0]}&nbsp; {isBlank(item[5]) ? null : ("("+item[5]+")")}</b>
+                                    <b>{item[0]}&nbsp; {isBlank(item[5]) ? null : ("(" + item[5] + ")")}</b>
                                 </Typography>
                             </Grid>
                             <Grid item xs={4} className={classes.round}>
@@ -225,7 +225,7 @@ function DisplayClasses() {
                         <Grid container alignItems='center' justifyContent='center' spacing={2} direction="column">
                             <Grid item>
                                 <Typography gutterBottom variant="subtitle1">
-                                <b>{item[0]}&nbsp; {isBlank(item[5]) ? null : ("("+item[5]+")")}</b>
+                                    <b>{item[0]}&nbsp; {isBlank(item[5]) ? null : ("(" + item[5] + ")")}</b>
                                 </Typography>
                             </Grid>
                             <Grid item xs={4} className={classes.round}>
@@ -252,7 +252,7 @@ function DisplayClasses() {
                         <Grid container alignItems='center' justifyContent='center' spacing={2} direction="column">
                             <Grid item>
                                 <Typography gutterBottom variant="subtitle1">
-                                <b>{item[0]}&nbsp; {isBlank(item[5]) ? null : ("("+item[5]+")")}</b>
+                                    <b>{item[0]}&nbsp; {isBlank(item[5]) ? null : ("(" + item[5] + ")")}</b>
                                 </Typography>
                             </Grid>
                             <Grid item xs={4} className={classes.round}>
@@ -279,7 +279,7 @@ function DisplayClasses() {
                         <Grid container alignItems='center' justifyContent='center' spacing={2} direction="column">
                             <Grid item>
                                 <Typography gutterBottom variant="subtitle1">
-                                <b>{item[0]}&nbsp; {isBlank(item[5]) ? null : ("("+item[5]+")")}</b>
+                                    <b>{item[0]}&nbsp; {isBlank(item[5]) ? null : ("(" + item[5] + ")")}</b>
                                 </Typography>
                             </Grid>
                             <Grid item xs={4} className={classes.round}>
@@ -306,7 +306,7 @@ function DisplayClasses() {
                         <Grid container alignItems='center' justifyContent='center' spacing={2} direction="column">
                             <Grid item>
                                 <Typography gutterBottom variant="subtitle1">
-                                <b>{item[0]}&nbsp; {isBlank(item[5]) ? null : ("("+item[5]+")")}</b>
+                                    <b>{item[0]}&nbsp; {isBlank(item[5]) ? null : ("(" + item[5] + ")")}</b>
                                 </Typography>
                             </Grid>
                             <Grid item xs={4} className={classes.round}>
@@ -409,6 +409,7 @@ function Schedule() {
             if ((window.location.pathname === "/signin" || window.location.pathname === "/signup") && user.emailVerified) {
                 history.push('/')
             }
+            getClassesFromFirestore();
         } else {
             localStorage.clear()
             if (window.location.pathname !== '/signin' && window.location.pathname !== '/signup') {
@@ -417,53 +418,54 @@ function Schedule() {
         }
     })
 
-    getClassesFromFirestore();
+    
 
     function getClassesFromFirestore() {
-        if (gotten === true || localStorage.getItem('uid') === undefined) {
+        if (gotten === true || localStorage.getItem('uid') === undefined || localStorage.getItem('uid') === "") {
             return;
+        } else {
+            firestore.db.collection('users').doc(localStorage.getItem('uid')).get().then((value) => {
+                var data = value.data();
+
+                createdClasses = [];
+                createdClasses2 = [];
+                createdClasses3 = [];
+                createdClasses4 = [];
+                createdClasses5 = [];
+                createdClasses6 = [];
+
+                if (data !== undefined) {
+                    if (data.classes !== undefined) {
+                        createdClasses = JSON.parse(data.classes);
+                    }
+                    if (data.classes2 !== undefined) {
+                        createdClasses2 = JSON.parse(data.classes2);
+                    }
+                    if (data.classes3 !== undefined) {
+                        createdClasses3 = JSON.parse(data.classes3);
+                    }
+                    if (data.classes4 !== undefined) {
+                        createdClasses4 = JSON.parse(data.classes4);
+                    }
+                    if (data.classes5 !== undefined) {
+                        createdClasses5 = JSON.parse(data.classes5);
+                    }
+                    if (data.classes6 !== undefined) {
+                        createdClasses6 = JSON.parse(data.classes6);
+                    }
+                }
+                localStorage.setItem('createdClasses', JSON.stringify(createdClasses));
+                localStorage.setItem('createdClasses2', JSON.stringify(createdClasses2));
+                localStorage.setItem('createdClasses3', JSON.stringify(createdClasses3));
+                localStorage.setItem('createdClasses4', JSON.stringify(createdClasses4));
+                localStorage.setItem('createdClasses5', JSON.stringify(createdClasses5));
+                localStorage.setItem('createdClasses6', JSON.stringify(createdClasses6));
+
+                gotten = true;
+                forceUpdate()
+
+            })
         }
-        firestore.db.collection('users').doc(localStorage.getItem('uid')).get().then((value) => {
-            var data = value.data();
-
-            createdClasses = [];
-            createdClasses2 = [];
-            createdClasses3 = [];
-            createdClasses4 = [];
-            createdClasses5 = [];
-            createdClasses6 = [];
-
-            if (data !== undefined) {
-                if (data.classes !== undefined) {
-                    createdClasses = JSON.parse(data.classes);
-                }
-                if (data.classes2 !== undefined) {
-                    createdClasses2 = JSON.parse(data.classes2);
-                }
-                if (data.classes3 !== undefined) {
-                    createdClasses3 = JSON.parse(data.classes3);
-                }
-                if (data.classes4 !== undefined) {
-                    createdClasses4 = JSON.parse(data.classes4);
-                }
-                if (data.classes5 !== undefined) {
-                    createdClasses5 = JSON.parse(data.classes5);
-                }
-                if (data.classes6 !== undefined) {
-                    createdClasses6 = JSON.parse(data.classes6);
-                }
-            }
-            localStorage.setItem('createdClasses', JSON.stringify(createdClasses));
-            localStorage.setItem('createdClasses2', JSON.stringify(createdClasses2));
-            localStorage.setItem('createdClasses3', JSON.stringify(createdClasses3));
-            localStorage.setItem('createdClasses4', JSON.stringify(createdClasses4));
-            localStorage.setItem('createdClasses5', JSON.stringify(createdClasses5));
-            localStorage.setItem('createdClasses6', JSON.stringify(createdClasses6));
-
-            gotten = true;
-            forceUpdate()
-
-        })
     }
 
     function DatePicker() {
@@ -523,11 +525,11 @@ function Schedule() {
         )
     }
 
-    
+
     function DisplayEvents() {
         const [open, setOpen] = React.useState(false);
         var eventMsg = "Events Today (";
-        if(todayEvents[formatDate(now)][0] === "None"){
+        if (todayEvents[formatDate(now)][0] === "None") {
             eventMsg = eventMsg + "0)";
         } else {
             eventMsg = eventMsg + todayEvents[formatDate(now)].length + ")";
