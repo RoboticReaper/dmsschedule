@@ -18,6 +18,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import firebase from "firebase";
 import List from '@mui/material/List';
 import EventIcon from '@mui/icons-material/Event';
@@ -44,6 +46,10 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(2),
         maxWidth: 500,
     },
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
+    },
 }));
 
 
@@ -52,6 +58,7 @@ function Classes() {
 
     const classes = useStyles();
     let history = useHistory();
+    const [returning, setReturning] = useState(false);
 
 
     const [createdClasses, setClasses] = useState(JSON.parse(localStorage.getItem('createdClasses')));
@@ -225,10 +232,12 @@ function Classes() {
 
 
     function goBack() {
+        setReturning(true);
         // upload the classes to firestore
         firestore.db.collection('users').doc(localStorage.getItem('uid')).set({ "classes": JSON.stringify(createdClasses), "classes2": JSON.stringify(createdClasses2), "classes3": JSON.stringify(createdClasses3), "classes4": JSON.stringify(createdClasses4), "classes5": JSON.stringify(createdClasses5), "classes6": JSON.stringify(createdClasses6) }).then(result => {
 
             window.location.href = "/";
+            setReturning(false);
         });
 
     }
@@ -626,6 +635,9 @@ function Classes() {
     };
 
     return <div>
+        <Backdrop className={classes.backdrop} open={returning}>
+            <CircularProgress color="inherit" />
+        </Backdrop>
         <div className="App">
             <header className='App-header'>
             </header>
