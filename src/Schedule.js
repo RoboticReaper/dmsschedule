@@ -160,10 +160,19 @@ function isBlank(str) {
     return (!!!str || /^\s*$/.test(str));
 }
 
+function openTutorialLink(){
+    const newWindow = window.open("https://youtu.be/rE-0jHOCYBk", '_blank', 'noopener,noreferrer');
+    if (newWindow) newWindow.opener = null;
+}
 
 function DisplayClasses() {
     const classes = useStyles();
     if (todayDay === 1) {
+        if(createdClasses.length === 0){
+            return (
+                <Typography gutterBottom variant="body2">Your schedule for this day is empty. If you're not sure how to add classes, please watch <a onClick={openTutorialLink} style={{color:"blue"}}>this tutorial.</a></Typography>
+            )
+        }
         return (
             createdClasses.map((item) =>
                 <>
@@ -190,7 +199,13 @@ function DisplayClasses() {
             )
         )
     }
+    
     if (todayDay === 2) {
+        if(createdClasses2.length === 0){
+            return (
+                <Typography gutterBottom variant="body2">Your schedule for this day is empty. If you're not sure how to add classes, please watch <a onClick={openTutorialLink} style={{color:"blue"}}>this tutorial.</a></Typography>
+            )
+        }
         return (
             createdClasses2.map((item) =>
                 <>
@@ -218,6 +233,11 @@ function DisplayClasses() {
         )
     }
     if (todayDay === 3) {
+        if(createdClasses3.length === 0){
+            return (
+                <Typography gutterBottom variant="body2">Your schedule for this day is empty. If you're not sure how to add classes, please watch <a onClick={openTutorialLink} style={{color:"blue"}}>this tutorial.</a></Typography>
+            )
+        }
         return (
             createdClasses3.map((item) =>
                 <>
@@ -245,6 +265,11 @@ function DisplayClasses() {
         )
     }
     if (todayDay === 4) {
+        if(createdClasses4.length === 0){
+            return (
+                <Typography gutterBottom variant="body2">Your schedule for this day is empty. If you're not sure how to add classes, please watch <a onClick={openTutorialLink} style={{color:"blue"}}>this tutorial.</a></Typography>
+            )
+        }
         return (
             createdClasses4.map((item) =>
                 <>
@@ -272,6 +297,11 @@ function DisplayClasses() {
         )
     }
     if (todayDay === 5) {
+        if(createdClasses5.length === 0){
+            return (
+                <Typography gutterBottom variant="body2">Your schedule for this day is empty. If you're not sure how to add classes, please watch <a onClick={openTutorialLink} style={{color:"blue"}}>this tutorial.</a></Typography>
+            )
+        }
         return (
             createdClasses5.map((item) =>
                 <>
@@ -299,6 +329,11 @@ function DisplayClasses() {
         )
     }
     if (todayDay === 6) {
+        if(createdClasses6.length === 0){
+            return (
+                <Typography gutterBottom variant="body2">Your schedule for this day is empty. If you're not sure how to add classes, please watch <a onClick={openTutorialLink} style={{color:"blue"}}>this tutorial.</a></Typography>
+            )
+        }
         return (
             createdClasses6.map((item) =>
                 <>
