@@ -605,7 +605,7 @@ function Schedule() {
                 <CircularProgress color="inherit" />
             </Backdrop>
             <div className="App">
-                <header className='App-header'>
+                <header className='App-header'>DMS Schedule
                 </header>
 
                 <Container maxWidth='sm'>
