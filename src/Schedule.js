@@ -83,7 +83,7 @@ function request() {
         async: false
     });
 
-    $.getJSON("https://clients6.google.com/calendar/v3/calendars/lexingtonma.org_iopgh49g29hj15t9tp9163pvl8@group.calendar.google.com/events?calendarId=lexingtonma.org_iopgh49g29hj15t9tp9163pvl8%40group.calendar.google.com&singleEvents=true&timeZone=America%2FNew_York&maxAttendees=1&maxResults=500&sanitizeHtml=true&timeMin=2021-11-01T00%3A00%3A00-05%3A00&timeMax=2022-03-06T00%3A00%3A00-05%3A00&key=AIzaSyBNlYH01_9Hc5S1J9vuFmu2nUqBZJNAXxs", function (data) {
+    $.getJSON("https://clients6.google.com/calendar/v3/calendars/lexingtonma.org_iopgh49g29hj15t9tp9163pvl8@group.calendar.google.com/events?calendarId=lexingtonma.org_iopgh49g29hj15t9tp9163pvl8%40group.calendar.google.com&singleEvents=true&timeZone=America%2FNew_York&maxAttendees=1&maxResults=2000&sanitizeHtml=true&timeMin=2022-05-01T00%3A00%3A00-05%3A00&timeMax=2022-07-06T00%3A00%3A00-05%3A00&key=AIzaSyBNlYH01_9Hc5S1J9vuFmu2nUqBZJNAXxs", function (data) {
         classes = data;
     });
 
