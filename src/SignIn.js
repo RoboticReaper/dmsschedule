@@ -86,6 +86,7 @@ function SignIn() {
             </header>
             <Container maxWidth="sm">
                 <div className="classes.root">
+                    <Typography gutterBottom variant="h6" style={{marginTop:20}}>This is a schedule management app for William Diamond Middle School students. Enter your schedule and you'll never have to worry about the 6-day cycle!</Typography>
                     <LockRoundedIcon fontSize="large" color="secondary" style={{ marginTop: 30 }} />
                     <Typography gutterBottom variant="h4">Sign In</Typography>
                     <TextField id="email" variant="outlined" type="email" label="Email" autoFocus fullWidth margin="normal"/>
